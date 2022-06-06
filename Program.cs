@@ -43,12 +43,16 @@ namespace Graph11
             graph.CreateConnectionUndirected("J", "I");
             graph.CreateConnectionUndirected("K", null);
             graph.CreateConnectionUndirected("O", "N");
+            graph.CreateConnectionUndirected("O", "P");
+            graph.CreateConnectionUndirected("S", "L");
             // graph.HasPathUndirected("F", "K");
-            bool v = graph.HasPathUndirected("F", "N",new List<string>());
-            Console.WriteLine(v);
+            //   bool v = graph.HasPathUndirected("F", "N",new List<string>());
+            //Console.WriteLine(v);
             // graph.BFS("A");
             // Console.WriteLine(graph.PathExistsBetweenVertexs("J", "F"));
             // Console.WriteLine(graph.PathExistsRecursion("J","H"));
+            int connectedComponent = graph.GetConnectedComponent();
+            Console.WriteLine(connectedComponent);
         }
     }
 }

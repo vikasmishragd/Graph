@@ -63,6 +63,40 @@ namespace Graph11
             }
         }
 
+        public int GetConnectedComponent()
+        {
+            var visited = new List<string>();
+            int count = 0;
+            foreach(var node in adjecencyList)
+            {
+                var localConnectedCount = new List<string>();
+                if (Explore(node.Key, visited, localConnectedCount))
+                {
+                    count += 1;
+                    Console.WriteLine("Max count : "+localConnectedCount.Count);
+                }
+            }
+            return count;
+        }
+
+        private bool Explore(string key, List<string> visited, List<string> localConnectedCount)
+        {
+            
+            if (visited.Contains(key))
+                return false;
+            if (key == null)
+                return false;
+
+            visited.Add(key);
+            localConnectedCount.Add(key);
+            adjecencyList.TryGetValue(key, out List<string> neighoburs);
+            foreach (var node in neighoburs)
+            {
+                Explore(node, visited,localConnectedCount);
+            }
+            return true;
+        }
+
         public bool HasPathUndirected(string source, string destination, List<string> visited)
         {
             if (source == destination)
