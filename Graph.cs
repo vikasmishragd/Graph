@@ -63,6 +63,27 @@ namespace Graph11
             }
         }
 
+        public bool HasPathUndirected(string source, string destination, List<string> visited)
+        {
+            if (source == destination)
+                return true;
+
+            adjecencyList.TryGetValue(source, out List<string> neighoburs);
+
+            if (visited.Contains(source))
+                return false;
+            visited.Add(source);
+
+            foreach(var node in neighoburs)
+            {
+                if(node!=null && HasPathUndirected(node,destination,visited))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void DFS(string startNode)
         {
             var stack = new Stack<string>();
